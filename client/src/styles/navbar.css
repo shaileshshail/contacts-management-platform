@@ -1,0 +1,55 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    height: 7vh;
+    width: 100%;
+    background-color: #293846;
+    margin: 0;
+    padding: 0;
+}
+.home-link{
+    flex: 15%;
+}
+
+.search-bar{
+    display: flex;
+    flex-direction: row;
+    flex: 65%;
+    justify-content: flex-end;    
+}
+
+.search-bar .input-ctr{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0 5rem 0 0;
+}
+.search-bar .input{
+    width: 19rem;
+    height: 4vh;
+}
+
+.user-info{
+    flex: 20%;
+    display: flex;
+    flex-direction: column;
+
+}
+.user-id{
+    text-align: center;
+    font-size: large;
+    color: aliceblue;
+    padding: 0 0 2px 0;
+}
+.logout{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.logout .btn{
+    width: 50%;
+    align-self: center;
+    height: 3vh;
+}

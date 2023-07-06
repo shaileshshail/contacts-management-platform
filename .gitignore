@@ -1,0 +1,14 @@
+#client
+/client/node_modules
+/client/build
+
+
+#server
+/server/node_modules
+/server/Node.js & Express notes
+
+/checkpoints
+
+
+*.txt
+*.env
