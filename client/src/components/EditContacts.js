@@ -39,56 +39,101 @@ const EditContacts = () => {
 
   const onSubmit = async (form, e) => {
     e.preventDefault();//prevent page refresh on submit
-    form._id=id; //adding id to form from param
+    form._id = id; //adding id to form from param
     console.log(form)
-    await updateOne(form)
+    await updateOne(form);
+    navigate('/view/' + id);
   }
   return (
-    <div>
+    <>
       <Navbar />
-      <div>
-        <Sidebar />
+      <Sidebar />
+      <div className="content edit">
+      <div className="upper">
+        <img src="https://picsum.photos/id/237/200/300" />
+        <div className="name">
+          <label> {contact?.firstname}</label>
+          <label> {contact?.lastname}</label>
+        </div>
+        <div className="btn">
+          <button type="submit" form="editform" >Save</button>
+        </div>
       </div>
-      <div>
-        <button onClick={() => navigate('/home')}><IoMdArrowRoundBack size={30} /></button>
-        <form onSubmit={handleSubmit(onSubmit)} >
-
-          <div>
-            <label>
-              First Name
-            </label>
-            <input placeholder='John' {...register("firstname")} />
-            {errors.username?.message}
-          </div>
-          <div>
-            <label>
-              First Name
-            </label>
-            <input placeholder='Snow' {...register("lastname")} />
-            {errors.username?.message}
-          </div>
-          <div>
-            <label>
-              Email
-            </label>
-            <input placeholder='example@email.com' {...register("email")} />
-            {errors.email?.message}
-
-          </div>
-          <div>
-            <label>
-              Phone
-            </label>
-            <input placeholder='987654321' {...register("phone")} />
-            {errors.password?.message}
-          </div>
-          <button >Save</button>
-
-        </form>
+      <div className="lower">
+          <form id='editform' onSubmit={handleSubmit(onSubmit)} >
+            <div className="form-group">
+              <label>
+                First Name
+              </label>
+              <input placeholder='John' {...register("firstname")} />
+              {errors.username?.message}
+            </div>
+            <div className="form-group">
+              <label>
+                First Name
+              </label>
+              <input placeholder='Snow' {...register("lastname")} />
+              {errors.username?.message}
+            </div>
+            <div className="form-group">
+              <label>
+                Email
+              </label>
+              <input placeholder='example@email.com' {...register("email")} />
+              {errors.email?.message}
+            </div>
+            <div className="form-group">
+              <label>
+                Phone
+              </label>
+              <input placeholder='987654321' {...register("phone")} />
+              {errors.password?.message}
+            </div>
+          </form>
       </div>
-    </div>
-
+      </div>
+    </>
   )
 }
 
 export default EditContacts
+
+/**
+  <div>
+          <button onClick={() => navigate('/home')}><IoMdArrowRoundBack size={30} /></button>
+          <form onSubmit={handleSubmit(onSubmit)} >
+            <div>
+              <label>
+                First Name
+              </label>
+              <input placeholder='John' {...register("firstname")} />
+              {errors.username?.message}
+            </div>
+            <div>
+              <label>
+                First Name
+              </label>
+              <input placeholder='Snow' {...register("lastname")} />
+              {errors.username?.message}
+            </div>
+            <div>
+              <label>
+                Email
+              </label>
+              <input placeholder='example@email.com' {...register("email")} />
+              {errors.email?.message}
+
+            </div>
+            <div>
+              <label>
+                Phone
+              </label>
+              <input placeholder='987654321' {...register("phone")} />
+              {errors.password?.message}
+            </div>
+            <button >Save</button>
+
+          </form>
+        </div>
+ 
+ */

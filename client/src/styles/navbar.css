@@ -1,55 +1,70 @@
 .navbar{
+    background-color:  rgb(197, 209, 219) ;
     display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    height: 7vh;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    min-height: 7.5vh;
     width: 100%;
-    background-color: #293846;
-    margin: 0;
-    padding: 0;
+    position: fixed;
 }
-.home-link{
-    flex: 15%;
+
+.nav-icon{
+    width: 20vw;
+    display: inline;
 }
+
+.nav-icon a{
+    font-size: 2em;
+    text-decoration: none;
+    color: #000;
+    
+}
+
 
 .search-bar{
+    width: 40vw;
     display: flex;
-    flex-direction: row;
-    flex: 65%;
-    justify-content: flex-end;    
-}
-
-.search-bar .input-ctr{
-    display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    padding:0 5rem 0 0;
-}
-.search-bar .input{
-    width: 19rem;
-    height: 4vh;
-}
-
-.user-info{
-    flex: 20%;
-    display: flex;
-    flex-direction: column;
 
 }
-.user-id{
-    text-align: center;
-    font-size: large;
-    color: aliceblue;
-    padding: 0 0 2px 0;
-}
-.logout{
-    display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-.logout .btn{
+.search-bar input{
+    height: 3.5rem;
     width: 50%;
-    align-self: center;
-    height: 3vh;
+    background-color: rgb(175, 179, 180);
+    border-radius: 20px;
+    border: 1px solid  rgb(175, 179, 180) ;
+    color: #000;
+    font-size: 1.5rem;
+    padding-left: 1em;
+}
+
+.search-bar input::placeholder{
+    color: #000;
+    padding-left: 1.5em;
+    font-size: 1em;
+
+
+}
+.user-card{
+    background-color: rgb(154, 164, 172);
+    margin-right: 2vw;
+    width: 12vw;
+    height: 55px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.user-card:hover{
+    background-color:rgb(165, 165, 165) ;
+}
+
+.user-card img{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: block;
 }

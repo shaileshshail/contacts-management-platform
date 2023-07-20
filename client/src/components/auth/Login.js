@@ -6,7 +6,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useState } from 'react';
 import { useUserAuth } from '../../context/UserAuthContext';
 import '../../styles/auth.css'
-import { Landingnav } from '../Landingnav';
 import { GoogleLogin } from '@react-oauth/google';
 
 
@@ -20,7 +19,7 @@ export const Login = () => {
   })
 
   const { logIn, googleLogin, user } = useUserAuth();
-  const [error, setError] = useState("")
+  const [error, setError] = useState(null)
 
   const navigate = useNavigate();
 
@@ -37,42 +36,38 @@ export const Login = () => {
     }
   }
 
-  const googleOnSuccess=async(credentialResponse)=>{
+  const googleOnSuccess = async (credentialResponse) => {
     console.log(credentialResponse);
 
-    const resMessage=await googleLogin(credentialResponse);
+    const resMessage = await googleLogin(credentialResponse);
     setError(resMessage);
 
   }
 
 
   return (
-    <>
-      <Landingnav />
+    <div className='login'>
+      {user ? (navigate('/home')) : (
+        <div className='container' >
+          <div className='org-name'>
+            Contacts.com
+          </div>
+          <p>Log in to your account</p>
+          <form onSubmit={handleSubmit(onSubmit)}>
 
-      <div className='auth'>
-
-        {user ? (navigate('/home')) : (
-          <div className='container'>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-
-              <div className="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder='example@email.com' {...register("email")} />
-              </div>
-              <div className="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder='************' {...register("password")} />
-              </div>
-
-              <div className="form-group">
-                <button type="submit">Log In</button>
-              </div>
-            </form>
-            <div>
-              {error}
+            <div className="form-group">
+              <label >Username:</label>
+              <input type="text" id="username" name="username" placeholder='example@email.com' {...register("email")} />
             </div>
+            <div className="form-group">
+              <label >Password:</label>
+              <input type="password" id="password" name="password" placeholder='************' {...register("password")} />
+            </div>
+
+            <div className="btn">
+              <button type="submit">Log In</button>
+            </div>
+            <div className='google-login'>
             <GoogleLogin
               onSuccess={credentialResponse => {
                 googleOnSuccess(credentialResponse);
@@ -81,18 +76,23 @@ export const Login = () => {
                 setError('Google Login Failed')
                 console.log('Login Failed');
               }}
-            />;
-            <div>
-              <p>
-                Don’t have an account?
-                <Link to='/signup'>Sign Up</Link>
-              </p>
-            </div>
+            />
           </div>
-        )}
-      </div>
-    </>
+          </form>
+          {error ?
+            <div className='error'>
+              <label>{error}</label>
+            </div> : <></>}
 
+            <p>
+              Don’t have an account?
+              <Link to='/signup'>Sign Up</Link>
+            </p>
+        </div>
+      )}
+      <div className='display'>
+      </div>
+    </div>
   )
 }
 

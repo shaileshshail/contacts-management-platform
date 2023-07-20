@@ -23,6 +23,8 @@ const handleRefreshToken = asyncHandler(async(req,res)=>{
         }
         const accessToken=jwt.sign({
             user: {
+                firstname: decode.user.firstname,
+                picture: decode.user.picture,
                 email: decode.user.email,
                 id: decode.user.id
             },
@@ -34,7 +36,7 @@ const handleRefreshToken = asyncHandler(async(req,res)=>{
 
 })
 
-//check for expired refresh tokens every 6hr
+//check for expired refresh tokens every 1hr
 var hours = 1
 var the_interval = hours * 60 * 60 * 1000;
 

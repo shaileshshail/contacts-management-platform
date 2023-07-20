@@ -3,13 +3,16 @@ import Navbar from './Navbar'
 import Sidebar from './Sidebar'
 const FrequentContacts = () => {
   return (
-    <div>
+    <>
       <Navbar />
-      <div>
-        <Sidebar />
-      </div>
+      <Sidebar />
+
+      <div className="content"    >
+        <div>
+        </div>
         Frequent Contact
-    </div>
+      </div>
+    </>
 
   )
 }

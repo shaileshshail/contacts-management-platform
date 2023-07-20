@@ -12,9 +12,10 @@ const useAddOne = () => {
 
     const CONTACTS_URL = '/api/contacts/';
     const addContact=(form)=>{
+        console.log(form)
         setLoading(true);
         axios
-        .post(CONTACTS_URL,JSON.stringify(form),{
+        .post(CONTACTS_URL,form,{
             headers: { 'Content-Type': 'application/json',"Authorization":`Bearer ${user?.accessToken}` },
             withCredentials: true,
         })

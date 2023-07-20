@@ -10,11 +10,11 @@ export const UserAuthContextProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
 
-    const signUp = async (firstname,lastname, email, password) => {
+    const signUp = async (firstname, lastname, email, password) => {
         const REGISTER_URL = 'api/users/register';
         try {
             const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ firstname,lastname, email, password }),
+                JSON.stringify({ firstname, lastname, email, password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true,
@@ -51,7 +51,7 @@ export const UserAuthContextProvider = ({ children }) => {
 
             //helper function
             getCurrentUser(response?.data.accessToken);
-  
+
             return JSON.stringify(response?.data);
         } catch (err) {
             if (!err?.response)
@@ -80,20 +80,21 @@ export const UserAuthContextProvider = ({ children }) => {
                 return "Invalid Credentials"
         }
     }
-    
+
     //Google section
 
-    const googleLogin=async(credentialResponse)=>{
-        const GOOGLE_LOGIN='api/users/google/login'
+    const googleLogin = async (credentialResponse) => {
+        console.log(credentialResponse)
+        const GOOGLE_LOGIN = 'api/users/google/login'
         try {
             const response = await axios.post(GOOGLE_LOGIN,
-                {accessToken:credentialResponse},
+                { accessToken: credentialResponse },
                 {
-                    headers: { 'Content-Type': 'application/json','Authorization':`Bearer ${credentialResponse.credential}` },
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${credentialResponse.credential}` },
                     withCredentials: true,
                 });
-            console.log("response",response.data)
-            
+            console.log("response", response.data)
+
             //helper function
             getCurrentUser(response?.data.accessToken);
         } catch (err) {
@@ -104,16 +105,16 @@ export const UserAuthContextProvider = ({ children }) => {
                 return "Email not registered"
         }
     }
-    const googleRegister=async(credentialResponse)=>{
-        const GOOGLE_REGISTER='api/users/google/register'
+    const googleRegister = async (credentialResponse) => {
+        const GOOGLE_REGISTER = 'api/users/google/register'
         try {
             const response = await axios.post(GOOGLE_REGISTER,
-                {accessToken:credentialResponse},
+                { accessToken: credentialResponse },
                 {
-                    headers: { 'Content-Type': 'application/json','Authorization':`Bearer ${credentialResponse.credential}` },
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${credentialResponse.credential}` },
                     withCredentials: true,
                 });
-            console.log("response",response.data)
+            console.log("response", response.data)
             return "Registration Successfull"
         } catch (err) {
             console.log(err)
@@ -126,18 +127,20 @@ export const UserAuthContextProvider = ({ children }) => {
 
 
 
-    const getCurrentUser=async(accessToken)=>{
+    const getCurrentUser = async (accessToken) => {
         const CURRENTUSER_URL = 'api/users/currentuser';
         try {
             const currentUser = await axios.get(CURRENTUSER_URL,
-                
+
                 {
-                    headers: { 'Content-Type': 'application/json',
-                    "Authorization":`Bearer ${accessToken}`  },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "Authorization": `Bearer ${accessToken}`
+                    },
                     withCredentials: true,
                 });
-            console.log("currentuser",currentUser);
-            setUser({"email":currentUser?.data.email,"accessToken":accessToken});
+            console.log("currentuser", currentUser);
+            setUser({ "user": { "email": currentUser?.data.email, "firstname": currentUser?.data.firstname, "picture": currentUser?.data.picture }, "accessToken": accessToken });
         } catch (err) {
             console.log(err)
             if (!err?.response)
@@ -156,11 +159,11 @@ export const UserAuthContextProvider = ({ children }) => {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true,
                 });
-            console.log("response",response.data)
-            
+            console.log("response", response.data)
+
             //helper function
             getCurrentUser(response?.data.accessToken);
-            
+
         } catch (err) {
             console.log(err)
             if (!err?.response)
@@ -176,9 +179,11 @@ export const UserAuthContextProvider = ({ children }) => {
     }, []);
 
     return (
-        <userAuthContext.Provider value={{ user, signUp,
-         logIn, logOut ,
-         googleLogin,googleRegister }}>
+        <userAuthContext.Provider value={{
+            user, signUp,
+            logIn, logOut,
+            googleLogin, googleRegister
+        }}>
             {children}
         </userAuthContext.Provider>
     );

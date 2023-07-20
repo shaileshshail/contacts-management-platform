@@ -8,15 +8,13 @@ import { Route,Routes } from 'react-router-dom';
 import { UserAuthContextProvider } from './context/UserAuthContext';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
 import ContactView from './components/ContactView'
-import Landing from './components/Landing';
 import FrequentContacts from './components/FrequentContacts';
 function App() {
   return (
-    <div className="App">
+    <>
       <UserAuthContextProvider>
       <Routes>
-          <Route path='/' element={<Landing />}/>
-          <Route path='/login' element={<Login />}/>
+          <Route path='/' element={<Login />}/>
           <Route path='/signup' element={<Signup/>}/>
           <Route path='/home' element={ 
             <ProtectedRoute>
@@ -47,7 +45,7 @@ function App() {
       </UserAuthContextProvider>
         
       
-    </div>
+    </>
   );
 }
 

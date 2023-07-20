@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use("/api/contacts",require("./routes/contactRoutes"));
 app.use("/api/users",require("./routes/userRoutes"));
 app.use("/api/refresh",require("./routes/refreshRoutes"));
-//app.use(errorHandler);
+app.use(errorHandler);
 
 app.listen(port,()=>{
     console.log(`Server running on port ${port}`);

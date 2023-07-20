@@ -32,7 +32,8 @@ const getContact =asynchandler(async(req,res)=>{
 //@route POST /api/contacts/
 //@access private
 const createContact =asynchandler(async(req,res)=>{
-    const {firstname,lastname,email,phone}=req.body;
+    const {firstname,lastname,email,phone,picture}=req.body;
+    console.log(req.body)
     if(!firstname || !phone){
         res.status(400);
         throw new Error("Required fields are missing");
@@ -60,12 +61,17 @@ const createContact =asynchandler(async(req,res)=>{
 //@route PUT /api/contacts/:id
 //@access private
 const updateContact =asynchandler(async(req,res)=>{
+    const {firstname,lastname,email,phone}=req.body;
     console.log("updating contactsssss.............")
-    const updatedContact= await ContactDB.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        {new:true}
-    );
+    const updatedContact= await ContactDB.updateOne({email:req.user.email,'contactlist._id':new mongoose.Types.ObjectId(req.params.id) },
+        {
+            $set:{
+                'contactlist.$.firstname':firstname,
+                'contactlist.$.lastname':lastname,               
+                'contactlist.$.email':email,               
+                'contactlist.$.phone':phone,               
+            }
+        });
     res.status(200).json("updatedContact");
 })
 //@desc delete contacts by :id

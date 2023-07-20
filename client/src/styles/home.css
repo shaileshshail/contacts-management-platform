@@ -1,36 +1,224 @@
-.home{
-    margin: 0;
-    padding: 0;
-}
-.home-disp{
-    margin: 0;
-    padding: 0;
-}
-.content{
-    background-color: rgb(226, 239, 250);
+.home {}
+
+.home-disp {}
+
+.table {
+    background-color:aliceblue;
     width: 100%;
     height: 100vh;
     max-height: 100vh;
     overflow: scroll;
 
+
+
 }
 
-.contact-title{
-    display: flex;
-    justify-content: space-around;
-}
-.contacts-list{
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
+.fixTableHead {
+
 }
 
-.element{
+.fixTableHead thead  {
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid black;
+
+}
+.fixTableHead thead tr {
+}
+
+.fixTableHead table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.fixTableHead th,
+td {
+    padding: 8px 15px;
+}
+
+.fixTableHead th {
+    background:  rgb(197, 209, 219);
+}
+
+.fixTableHead tr:hover{
+    background-color: rgb(197, 209, 219);
+    cursor: pointer;
+}
+
+.fixTableHead .val{
+
+}
+
+
+.fixTableHead td button{
+    margin-left: 10px;
+    width: 50px;
+    height: 30px;
+}
+
+
+
+
+
+
+
+
+/* Contatc View Page */
+
+.view{
+    padding: 2rem 2rem 0 3rem ;
+    background-color: aliceblue;
+}
+.upper{
+    border-bottom:2px solid black ;
+    padding: 1rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+
+.upper img{
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+}
+
+.upper .name{
+    width: 50vw;
+}
+.upper label{
+    display: block;
+    padding: 1rem;
+    font-size: 3rem;
+    text-transform: capitalize;
+}
+
+.upper .btn{
+    width: 10vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+}
+
+.upper .btn button{
+    height: 3.5rem;
+    width: 10rem;
+    border-radius: 5px;
+    font-size: larger;
+}
+
+
+.view .lower{
+    background-color:rgb(204, 199, 199);
+    border-radius: 15px;
+    width: 35vw;
+    padding: 1rem;
+    margin-top: 3rem;
+}
+
+.lower h3{
+    text-decoration: underline;
+}
+.lower .group{
+    padding: 1rem 0 0.5rem 3rem;
+}
+
+.lower .group label{
+    padding-left: 1rem;
+    font-size: larger;
+}
+
+/* edit Page*/
+
+
+.edit{
+    padding: 2rem 2rem 0 3rem ;
+    background-color: aliceblue;
+}
+
+.edit .lower{
+    background-color:rgb(204, 199, 199);
+    border-radius: 15px;
+    width: 35vw;
+    padding: 1rem;
+    margin-top: 3rem;
+}
+
+.edit .lower label{
+    display: block;
+}
+
+.edit .lower .form-group{
+    padding: 1rem;
+}
+.edit .form-group input{
+    min-width: 25vw;
+    min-height: 35px;
+    border-radius: 10px;
+    border: none;
+    padding-left:1rem ;
+}
+
+.edit .lower button{
+    width: 60px;
+
+}
+
+
+
+
+/* CREATING CONTACT*/
+
+.create{
+    padding: 2rem 2rem 0 3rem ;
+    background-color: aliceblue;
+}
+
+.create .img-btn{
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(101, 102, 104);
     padding: 1rem;
 }
 
-.element:hover{
-    background-color: rgb(188, 198, 206);
+.create .upload{
+    
+    background-color: aqua;
+}
+.create .upper input[type="file"]{
+    display: none;
+
+}
+.create .upload label{
+    cursor: pointer;
+
+}
+
+
+
+.create .lower{
+    background-color:rgb(204, 199, 199);
+    border-radius: 15px;
+    width: 35vw;
+    padding: 1rem;
+    margin-top: 3rem;
+}
+
+.create .lower label{
+    display: block;
+}
+
+.create .lower .form-group{
+    padding: 1rem;
+}
+.create .form-group input{
+    min-width: 25vw;
+    min-height: 35px;
+    border-radius: 10px;
+    border: none;
+    padding-left:1rem ;
+}
+
+.create .lower button{
+    width: 60px;
+
 }

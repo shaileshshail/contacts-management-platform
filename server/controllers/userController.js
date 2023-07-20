@@ -50,15 +50,19 @@ const loginUser = asynchandler(async (req, res) => {
         console.log("creating accesstoken")
         const accessToken = jwt.sign({
             user: {
+                firstname:user.firstname,
                 email: user.email,
-                id: user.id
+                picture:user.picture,
+                id: user.id,
             },
         }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30m" });
         console.log("creating refreshtoken")
         const refreshToken = jwt.sign({
             user: {
+                firstname:user.firstname,
                 email: user.email,
-                id: user.id
+                picture:user.picture,
+                id: user.id,
             },
         }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "1h" });
 
@@ -123,7 +127,7 @@ const googleLogin=asynchandler(async (req,res) =>{
         audience:process.env.GOOGLE_CLIENT_ID
     });
     const payload=ticket.getPayload();
-
+    console.log(payload)
     const email=payload.email;
     const user = await UserDB.findOne({ email });
     //compare password with hashed password
@@ -131,15 +135,19 @@ const googleLogin=asynchandler(async (req,res) =>{
         console.log("creating accesstoken")
         const accessToken = jwt.sign({
             user: {
+                firstname:user.firstname,
                 email: user.email,
-                id: user.id
+                picture:user.picture,
+                id: user.id,
             },
         }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "30m" });
         console.log("creating refreshtoken")
         const refreshToken = jwt.sign({
             user: {
+                firstname:user.firstname,
                 email: user.email,
-                id: user.id
+                picture:user.picture,
+                id: user.id,
             },
         }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "1h" });
 
@@ -180,6 +188,7 @@ const googleRegister=asynchandler(async (req,res) =>{
     const email=payload.email;
     const firstname =payload.given_name;
     const lastname = payload.family_name;
+    const picture=payload.picture;
 
     const userAvailable = await UserDB.findOne({ email });
     if (userAvailable) {
@@ -190,6 +199,7 @@ const googleRegister=asynchandler(async (req,res) =>{
         "firstname": firstname,
         "lastname":lastname,
         "email": email,
+        "picture":picture,
         "password": "HGkSBSAdhJOrig2OHhcqoOlJgmksSkcOr23jQcCjyNkYbLMtAvY8IWxG8QyvLt5"
     })
     if (addUser) {
